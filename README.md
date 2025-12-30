@@ -1,4 +1,7 @@
 # NodeMCU Iframe-Based Captive Portal
+<p align="center">
+  <img src="https://github.com/gurudattch/WiFiApple/blob/main/wifiapple.png" alt="Description of image"  width="400"/>
+</p>
 
 ## Overview
 
