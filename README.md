@@ -1,127 +1,138 @@
-# WiFiApple
+# 🍎 WiFiApple
+
 <p align="center">
-  <img src="https://github.com/gurudattch/WiFiApple/blob/main/wifiapple.png" alt="Description of image"  width="400"/>
+  <img src="https://github.com/gurudattch/WiFiApple/blob/main/wifiapple.png" width="300" alt="WiFiApple Logo"/>
 </p>
 
-**WifiApple** A ESP8266 Supported Lightweight toolkit for wifi password phishing tool inspired by Wifi Pineapple
+**WiFiApple** is a lightweight ESP8266-based Wi-Fi toolkit inspired by WiFi Pineapple, designed for captive portal and phishing-based security research.
+
+---
 
 ## Overview
 
-This project demonstrates an innovative solution for creating a rich web experience on resource-constrained IoT devices. By utilizing NodeMCU's limited capabilities in conjunction with an iframe embedding technique, this implementation provides a fully functional web portal while maintaining the efficiency of small IoT devices.
+WiFiApple enables ESP8266 devices to host a captive portal by embedding an external web application using an iframe.
+This approach overcomes hardware limitations while delivering a rich web interface.
+
+---
 
 ## Architecture
 
-The solution addresses the fundamental challenge of hosting complex web applications on microcontrollers with limited resources. Instead of attempting to serve a large, complex site directly from the NodeMCU, this implementation uses an iframe to embed a fully functional web portal hosted on a more powerful external server.
+Instead of hosting a full web portal on the ESP8266, WiFiApple uses a hybrid model:
 
-### Key Components
+* **NodeMCU ESP8266** → Hosts minimal captive portal
+* **External Server** → Hosts main web application
+* **Iframe** → Displays portal inside ESP page
 
-- **NodeMCU ESP8266**: Acts as a Wi-Fi access point and serves the minimal HTML wrapper
-- **External Server**: Hosts the complex web application at `192.168.4.100:8000`
-- **Iframe Integration**: Seamlessly embeds the external portal within the NodeMCU-served page
+```
+Client → ESP8266 AP → Iframe → External Server
+```
 
-## Technical Implementation
+---
 
-### Hardware Requirements
-- NodeMCU ESP8266 development board
-- External server (Raspberry Pi, PC, or cloud instance) running on `192.168.4.100:8000`
+## Key Components
 
-### Software Features
+* NodeMCU ESP8266 (Access Point)
+* DNS Server (Captive Portal)
+* Web Server (HTML Wrapper)
+* External Portal (`192.168.4.100:8000`)
 
-#### Captive Portal Functionality
-- Creates Wi-Fi access point named "AccessPoint"
-- Implements DNS server to capture all requests
-- Redirects all traffic to the iframe-embedded portal
-- Handles HTTP requests and redirections
+---
 
-#### Iframe Implementation
+## Core Features
+
+* Creates fake Wi-Fi Access Point
+* Captures all DNS requests
+* Redirects traffic to captive portal
+* Embeds external website via iframe
+* Supports responsive web pages
+* Minimal resource usage
+
+---
+
+## Iframe Example
+
 ```html
 <iframe id="cover" src="http://192.168.4.100:8000"></iframe>
 ```
-- Full-screen iframe covering entire viewport
-- Seamless integration with external web application
-- Responsive design for various device sizes
 
-#### Network Configuration
-- **Access Point IP**: Dynamically assigned via `WiFi.softAPIP()`
-- **DNS Server**: Port 53, captures all domain requests
-- **Web Server**: Port 80, serves the iframe wrapper
-- **External Portal**: `192.168.4.100:8000`
+* Full-screen display
+* Loads external portal
+* Works on all devices
 
-## Code Structure
+---
 
-### Core Libraries
+## Libraries Used
+
 ```cpp
-#include <ESP8266WiFi.h>      // Wi-Fi functionality
-#include <DNSServer.h>        // DNS server for captive portal
-#include <ESP8266WebServer.h> // HTTP server
-#include <EEPROM.h>          // Optional persistent storage
+#include <ESP8266WiFi.h>
+#include <DNSServer.h>
+#include <ESP8266WebServer.h>
+#include <EEPROM.h>
 ```
 
-### Main Functions
+---
 
-#### `setup()`
-- Initializes Wi-Fi access point
-- Configures DHCP server
-- Starts web server with route handlers
-- Initializes DNS server for request capture
+## Setup Guide
 
-#### `loop()`
-- Processes DNS requests continuously
-- Handles incoming HTTP client requests
+### 1. Hardware
 
-#### `handleRoot()`
-- Serves the main HTML page with iframe
-- Returns minimal HTML wrapper
+* NodeMCU ESP8266
+* External server (PC / Raspberry Pi / Cloud)
 
-#### `handleNotFound()`
-- Redirects unknown requests to main portal
-- Implements captive portal behavior
+### 2. Upload Code
 
-## Innovation Highlights
+* Flash firmware using Arduino IDE
+* Open Serial Monitor
+* Note AP IP address
 
-This solution showcases effective technology integration by:
+### 3️3. Start Server
 
-1. **Resource Optimization**: Leveraging NodeMCU's limited capabilities for essential functions only
-2. **Hybrid Architecture**: Combining lightweight IoT device with powerful external server
-3. **Seamless User Experience**: Providing rich functionality through iframe embedding
-4. **Scalability**: Allowing complex applications to run independently of IoT constraints
+Run portal on:
 
-## Setup Instructions
+```
+192.168.4.100:8000
+```
 
-1. **Hardware Setup**
-   - Connect NodeMCU to power source
-   - Ensure external server is running on `192.168.4.100:8000`
+### 4️4. Connect
 
-2. **Software Configuration**
-   - Upload the code to NodeMCU using Arduino IDE
-   - Verify serial output for AP IP address
-   - Connect devices to "AccessPoint" Wi-Fi network
+* Join Wi-Fi: `AccessPoint`
+* Open browser
+* Portal loads automatically
 
-3. **Testing**
-   - Connect to the NodeMCU access point
-   - Open any web browser
-   - Verify iframe loads external portal content
+---
 
-## Benefits
+##  Benefits
 
-- **Minimal Resource Usage**: NodeMCU handles only basic networking and HTML serving
-- **Rich Functionality**: Complex web applications run on dedicated server
-- **Easy Maintenance**: Updates to web portal don't require NodeMCU reprogramming
-- **Cost Effective**: Utilizes inexpensive IoT hardware for network access
-- **Flexible Deployment**: External server can be local or cloud-based
+* Low memory usage
+* Easy maintenance
+* Scalable design
+* Cheap hardware
+* No frequent reflashing
 
-## Use Cases
+---
 
-- IoT device configuration portals
-- Public Wi-Fi access points with custom interfaces
-- Educational demonstrations of hybrid IoT architectures
-- Prototype development for resource-constrained environments
+##  Use Cases
 
-## Technical Considerations
+* Captive portal testing
+* Wireless security research
+* IoT networking demos
+* Education & training
+* Prototype development
 
-- Ensure external server accessibility from NodeMCU network
-- Monitor iframe loading performance based on network conditions
-- Consider security implications of captive portal implementation
-- Plan for external server availability and failover scenarios
+---
 
-This implementation demonstrates how different technologies can work together effectively, providing a practical solution for delivering rich web experiences through resource-constrained IoT devices
+##  Security Notes
+
+* Monitor external server availability
+* Secure portal endpoints
+* Avoid unauthorized usage
+* Use only in legal environments
+
+---
+
+## ❓ Disclaimer
+
+This project is intended **for educational and security research purposes only**.
+Unauthorized use against networks or users is illegal.
+
+---
