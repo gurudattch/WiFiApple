@@ -11,7 +11,8 @@
 ## Overview
 
 WiFiApple enables ESP8266 devices to host a captive portal by embedding an external web application using an iframe.
-This approach overcomes hardware limitations while delivering a rich web interface.
+This help you to run heavy backend application or multiple phishing captive portals without reprogramming the nodeMCU again & again 
+This approach overcomes hardware limitations while delivering a rich web interface. 
 
 ---
 
