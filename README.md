@@ -1,7 +1,7 @@
 # 🍎 WiFiApple
 
 <p align="center">
-  <img src="https://github.com/gurudattch/WiFiApple/blob/main/wifiapple.png" width="300" alt="WiFiApple Logo"/>
+  <img src="https://github.com/gurudattch/WiFiApple/blob/main/wifiapple.png" width="300"  style="border-radius:50%" alt="WiFiApple Logo"/>
 </p>
 
 **WiFiApple** is a lightweight ESP8266-based Wi-Fi toolkit inspired by WiFi Pineapple, designed for captive portal and phishing-based security research.
