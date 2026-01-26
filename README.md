@@ -2,7 +2,8 @@
 <p align="center">
   <img src="https://github.com/gurudattch/WiFiApple/blob/main/wifiapple.png" alt="Description of image"  width="400"/>
 </p>
-<p>A ESP8266 Supported Lightweight toolkit for wifi password phishing tool inspired by Wifi Pineapple</p>
+
+**WifiApple** A ESP8266 Supported Lightweight toolkit for wifi password phishing tool inspired by Wifi Pineapple
 
 ## Overview
 
